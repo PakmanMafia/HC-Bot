@@ -1,3 +1,14 @@
+const { Client, Intents } = require('discord.js');
 const {token} = require('./config.json');
 
-console.log(token);
+const client = new Client({
+    intents:[
+        Intents.FLAGS.GUILDS
+    ]
+});
+
+client.once('ready', () => {
+    console.log('Primed!');
+})
+
+client.login(token);

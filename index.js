@@ -8,7 +8,7 @@ const client = new Client({
 });
 
 client.once('ready', () => {
-    console.log('Primed!');
+        
 })
 
 client.login(token);

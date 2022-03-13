@@ -11,4 +11,6 @@ client.once('ready', () => {
     console.log("Ready!")
 })
 
+// comment
+
 client.login(token);

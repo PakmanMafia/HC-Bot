@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { exec } = require('child_process');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,10 +18,48 @@ module.exports = {
                 .setName('author')
                 .setDescription(`Replies with the author's GH`)),
     execute(interaction) {
-
-        // Don't judge me for this command, it's a very useful tester with low latency :P
-        interaction.reply('Pong!');
-
-        // console.log(interaction.commandId); // [Interaction commandID]
+        switch(interaction.options.getSubcommand()) {
+            case 'release':
+                exec('node ./src/REST-requests/release.js', (error, stdout, stderr) => {
+                    if(error) {
+                        console.log(`error: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.log(`stderr: ${stderr}`);
+                        return;
+                    }
+                    interaction.reply(stdout);
+                })
+                break;
+            case 'repo':
+                exec('node ./src/REST-requests/repo.js', (error, stdout, stderr) => {
+                    if(error) {
+                        console.log(`error: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.log(`stderr: ${stderr}`);
+                        return;
+                    }
+                    interaction.reply(stdout);
+                })
+                break;
+            case 'author':
+                exec('node ./src/REST-requests/author.js', (error, stdout, stderr) => {
+                    if(error) {
+                        console.log(`error: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.log(`stderr: ${stderr}`);
+                        return;
+                    }
+                    interaction.reply(stdout);
+                })
+                break;
+            default:
+                interaction.reply('error');
+        }
     }
 }

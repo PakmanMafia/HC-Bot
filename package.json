@@ -2,14 +2,21 @@
   "name": "hcbot",
   "version": "1.0.0",
   "description": "A Bot that handles HC Events",
-  "main": "entrypoint.js",
+  "main": "src/entrypoint.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "entrypoint": "node src/entrypoint.js",
+    "register": "node scripts/register.js"
   },
   "author": "ness",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/builders": "^0.12.0",
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.26.0",
     "discord-rpc": "^4.0.1",
-    "discord.js": "^13.6.0"
+    "discord.js": "^13.6.0",
+    "fs": "^0.0.1-security",
+    "register": "^0.0.0"
   }
 }

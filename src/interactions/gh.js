@@ -43,8 +43,18 @@ module.exports = {
                         return;
                     }
                     if (stdout) {
-                        var repoPart = require('../REST-requests/repo');
-                        console.log(repoPart);
+                        /*
+                        async function doStuff() {
+                            const repoFind = require('../REST-requests/repo');
+                            const repoLink = await repoFind('https://api.github.com/repos/Soucouyant/HC-Bot');
+                            console.log(repoLink);
+                        }
+                        await doStuff();
+                        */
+                       const repoFind = require('../REST-requests/repo');
+                       const repoLink = await repoFind('https://api.github.com/repos/Soucouyant/HC-Bot');
+                       interaction.reply(repoLink);
+                        
                     }
                 })
                 break;

@@ -17,10 +17,10 @@ module.exports = {
             subcommand
                 .setName('author')
                 .setDescription(`Replies with the author's GH`)),
-    execute(interaction) {
+    async execute(interaction) {
         switch(interaction.options.getSubcommand()) {
             case 'release':
-                exec('node ./src/REST-requests/release.js', (error, stdout, stderr) => {
+                await exec('node ./src/REST-requests/release.js', async (error, stdout, stderr) => {
                     if(error) {
                         console.log(`error: ${error.message}`);
                         return;
@@ -29,11 +29,11 @@ module.exports = {
                         console.log(`stderr: ${stderr}`);
                         return;
                     }
-                    interaction.reply(stdout);
+                    interaction.reply(repoEmbed);
                 })
                 break;
             case 'repo':
-                exec('node ./src/REST-requests/repo.js', (error, stdout, stderr) => {
+                exec('node ./src/REST-requests/repo.js', async (error, stdout, stderr) => {
                     if(error) {
                         console.log(`error: ${error.message}`);
                         return;
@@ -42,7 +42,10 @@ module.exports = {
                         console.log(`stderr: ${stderr}`);
                         return;
                     }
-                    interaction.reply(stdout);
+                    if (stdout) {
+                        var repoPart = require('../REST-requests/repo');
+                        console.log(repoPart);
+                    }
                 })
                 break;
             case 'author':

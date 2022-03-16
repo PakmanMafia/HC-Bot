@@ -33,19 +33,28 @@ module.exports = {
 				const embed = require("../embeds/gh-repoEmbed");
 				const getAvatarUrl = require("../REST-requests/request-authorAvatar");
 				const getRepoDescription = require("../REST-requests/request-repoDescription");
+				const getAuthorName = require("../REST-requests/request-authorName");
+				const getAuthorLink = require("../REST-requests/request-authorLink");
+				const rokaThumbnail =
+					"https://cdn.discordapp.com/attachments/704672484368187432/953392094020501544/AACB1C6C-5475-4230-B12E-A6862F8E91C6.jpg";
 
 				// Invoking Functions
 				const repoName = await repoNameFind(apiLink);
 				const repoLink = await repoLinkFind(apiLink);
 				const avatarUrl = await getAvatarUrl(apiLink);
 				const repoDescription = await getRepoDescription(apiLink);
+				const authorName = await getAuthorName(apiLink);
+				const authorLink = await getAuthorLink(apiLink);
 				const color = await colorGen();
 				const repoEmbed = await embed(
 					repoLink,
 					color,
 					repoName,
+					rokaThumbnail,
+					repoDescription,
+					authorName,
 					avatarUrl,
-					repoDescription
+					authorLink
 				);
 
 				// Return

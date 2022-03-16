@@ -1,2 +1,2 @@
 # HC-Bot
-Deprecated moved to 
+Deprecated moved to https://github.com/PakmanMafia/HC-Bot
